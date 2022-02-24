@@ -1,7 +1,7 @@
 const Engineer = require("../lib/Engineer");
 
 //Test the inherited properties
-test("Inherites the properties from the superclass Employee", () => {
+test("Inherits the properties from the superclass Employee", () => {
 
     const engineer = new Engineer();
 
@@ -9,7 +9,7 @@ test("Inherites the properties from the superclass Employee", () => {
 });
 
 //Test the github property
-test("Inherites the properties from the superclass Employee", () => {
+test("Contains a unique property \"github\"", () => {
 
     const engineer = new Engineer();
 
@@ -18,7 +18,7 @@ test("Inherites the properties from the superclass Employee", () => {
 });
 
 //Test the getGithub method
-test("Inherites the properties from the superclass Employee", () => {
+test("getGithub method works properly", () => {
 
     const engineer = new Engineer();
     expect(engineer.getGithub()).toEqual("username");
@@ -29,7 +29,7 @@ test("Inherites the properties from the superclass Employee", () => {
 });
 
 //Test the overwritten role
-test("Inherites the properties from the superclass Employee", () => {
+test("role has been overwritten from superclass", () => {
 
     const engineer = new Engineer();
 
