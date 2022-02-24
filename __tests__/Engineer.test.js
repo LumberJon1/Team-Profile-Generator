@@ -5,7 +5,7 @@ test("Inherits the properties from the superclass Employee", () => {
 
     const engineer = new Engineer();
 
-    expect(engineer.getId()).toEqual(0);
+    expect(engineer).toHaveProperty("id");
 });
 
 //Test the github property
@@ -21,8 +21,6 @@ test("Contains a unique property \"github\"", () => {
 test("getGithub method works properly", () => {
 
     const engineer = new Engineer();
-    expect(engineer.getGithub()).toEqual("username");
-
     engineer.github = "UN22";
 
     expect(engineer.getGithub()).toEqual("UN22");
