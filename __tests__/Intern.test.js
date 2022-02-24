@@ -25,7 +25,7 @@ test("getSchool method works as intended when school property updates", () => {
 });
 
 //test the overwritten role property
-test("description", () => {
+test("has an updated role that reflects the extension of superclass", () => {
     const intern = new Intern();
 
     expect(intern.getRole()).toEqual("Intern");
