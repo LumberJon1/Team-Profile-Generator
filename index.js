@@ -39,7 +39,23 @@ const managerPrompt = () => {
             name: "officeNumber",
             message: "Enter the manager's office number."
         }
-    ])
+    ]).then(function(answer) {
+        let manager = new Manager();
+        manager.name = answer.name;
+        manager.id = answer.id;
+        manager.email = answer.email;
+        manager.officeNumber = answer.officeNumber;
+
+        employeeArray.push(
+            {
+            role: manager.getRole(),
+            name: manager.name,
+            id: manager.id,
+            email: manager.email,
+            school: manager.officeNumber
+            }
+        )}
+    )
 }
 
 //Prompt details of the employee
@@ -67,7 +83,25 @@ const promptDetails = (employee) => {
                 name: "github",
                 message: "Enter the engineer's github username."
             }
-        ]).then(promptEmployee);
+        ]).then(function(answer) {
+
+            let engineer = new Engineer();
+
+            engineer.name = answer.name;
+            engineer.id = answer.id;
+            engineer.email = answer.email;
+            engineer.github = answer.github;
+
+            employeeArray.push({
+                role: engineer.getRole(),
+                name: engineer.name,
+                id: engineer.id, 
+                email: engineer.email,
+                github: engineer.github
+            });
+
+            promptEmployee();
+        });
     }
     else if (employee === "Intern") {
         inquirer.prompt([
@@ -91,7 +125,25 @@ const promptDetails = (employee) => {
                 name: "school",
                 message: "Enter the intern's school."
             }
-        ]).then(promptEmployee);
+        ]).then(function(answer) {
+
+            let intern = new Intern();
+
+            intern.name = answer.name;
+            intern.id = answer.id;
+            intern.email = answer.email;
+            intern.school = answer.school;
+
+            employeeArray.push({
+                role: intern.getRole(),
+                name: intern.name,
+                id: intern.id,
+                email: intern.email,
+                school: intern.school
+            });
+
+            promptEmployee();
+        });
     }
 }
 
@@ -110,11 +162,9 @@ const promptEmployee = () => {
 
         if (answer.employeeType === "Engineer") {
             promptDetails(answer.employeeType);
-            employeeArray.push(answer.employeeType);
         }
         else if (answer.employeeType === "Intern"){
             promptDetails(answer.employeeType)
-            employeeArray.push(answer.employeeType);
         }
         else {
             console.log(employeeArray);
