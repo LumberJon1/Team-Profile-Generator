@@ -13,11 +13,28 @@ const employeeArray = [];
 const testArray = [
     {
     name: "Manager1",
+    role: "Manager",
     id: "manager11223",
     email: "manager@thiscompany.net",
     officeNumber: "23451"
+    },
+    {
+    name: "Engineer1",
+    role: "Engineer",
+    id: "44372",
+    email: "engineer@thiscompany.net",
+    github: "gitPower"
+    },
+    {
+    name: "Intern1",
+    role: "Intern",
+    id: "3321587769309",
+    email: "intern@thiscompany.net",
+    school: "ASU"
     }
 ]
+
+
 
 //Prompt user for employees...
 //Section for the manager
@@ -61,6 +78,23 @@ const managerPrompt = () => {
         )}
     )
 }
+
+const writeFile = fileContent => {
+        return new Promise((resolve, reject) => {
+            fs.writeFile("./dist/index.html", fileContent, err => {
+                if (err) {
+                    reject (err);
+                    return;
+                }
+                resolve({
+                    ok: true,
+                    message: "File created."
+                });
+            });
+        });
+    };
+let testData = generatePage(testArray);
+writeFile(testData);
 
 //Prompt details of the employee
 const promptDetails = (employee) => {
@@ -181,23 +215,23 @@ const promptEmployee = () => {
 
 //When finished, generate the HTML
 
-managerPrompt().then(function(answer) {
-    //do something with answer
-    console.log(answer);
-    promptEmployee()
-})
+// managerPrompt().then(function(answer) {
+//     //do something with answer
+//     console.log(answer);
+//     promptEmployee()
+// })
 
-const writeFile = fileContent => {
-    return new Promise((resolve, reject) => {
-        fs.writeFile("./dist/index.html", fileContent, err => {
-            if (err) {
-                reject (err);
-                return;
-            }
-            resolve({
-                ok: true,
-                message: "File created."
-            });
-        });
-    });
-};
+// const writeFile = fileContent => {
+//     return new Promise((resolve, reject) => {
+//         fs.writeFile("./dist/index.html", fileContent, err => {
+//             if (err) {
+//                 reject (err);
+//                 return;
+//             }
+//             resolve({
+//                 ok: true,
+//                 message: "File created."
+//             });
+//         });
+//     });
+// };
