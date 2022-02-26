@@ -10,6 +10,14 @@ const fs = require("fs");
 
 //Array that holds employees
 const employeeArray = [];
+const testArray = [
+    {
+    name: "Manager1",
+    id: "manager11223",
+    email: "manager@thiscompany.net",
+    officeNumber: "23451"
+    }
+]
 
 //Prompt user for employees...
 //Section for the manager
