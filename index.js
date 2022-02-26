@@ -3,17 +3,13 @@ const inquirer = require("inquirer");
 const Manager = require("./lib/Manager.js");
 const Engineer = require("./lib/Engineer.js");
 const Intern = require("./lib/Intern.js");
+const {generatePage, generateEmployeeCards} = require("./src/page-template.js");
+const fs = require("fs");
 
 
 
 //Array that holds employees
 const employeeArray = [];
-
-//Function that generates the HTML page from answer object
-const generatePage = function() {
-    //Run the code from src folder
-
-};
 
 //Prompt user for employees...
 //Section for the manager
@@ -168,6 +164,9 @@ const promptEmployee = () => {
         }
         else {
             console.log(employeeArray);
+            const pageData = generatePage(employeeArray)
+            console.log(pageData);
+            writeFile(pageData);
         }
     })
 }
@@ -177,5 +176,20 @@ const promptEmployee = () => {
 managerPrompt().then(function(answer) {
     //do something with answer
     console.log(answer);
-    promptEmployee();
-});
+    promptEmployee()
+})
+
+const writeFile = fileContent => {
+    return new Promise((resolve, reject) => {
+        fs.writeFile("./dist/index.html", fileContent, err => {
+            if (err) {
+                reject (err);
+                return;
+            }
+            resolve({
+                ok: true,
+                message: "File created."
+            });
+        });
+    });
+};
