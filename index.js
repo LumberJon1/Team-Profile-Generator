@@ -30,11 +30,27 @@ const testArray = [
     role: "Intern",
     id: "3321587769309",
     email: "intern@thiscompany.net",
-    school: "ASU"
+    school: "GCU"
     }
 ]
 
+const writeFile = fileContent => {
+        return new Promise((resolve, reject) => {
+            fs.writeFile("./dist/index.html", fileContent, err => {
+                if (err) {
+                    reject (err);
+                    return;
+                }
+                resolve({
+                    ok: true,
+                    message: "File created."
+                });
+            });
+        });
+    };
 
+let testData = generatePage(testArray);
+writeFile(testData);
 
 //Prompt user for employees...
 //Section for the manager
@@ -79,22 +95,6 @@ const managerPrompt = () => {
     )
 }
 
-const writeFile = fileContent => {
-        return new Promise((resolve, reject) => {
-            fs.writeFile("./dist/index.html", fileContent, err => {
-                if (err) {
-                    reject (err);
-                    return;
-                }
-                resolve({
-                    ok: true,
-                    message: "File created."
-                });
-            });
-        });
-    };
-let testData = generatePage(testArray);
-writeFile(testData);
 
 //Prompt details of the employee
 const promptDetails = (employee) => {
