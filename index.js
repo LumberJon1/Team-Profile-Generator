@@ -3,7 +3,7 @@ const inquirer = require("inquirer");
 const Manager = require("./lib/Manager.js");
 const Engineer = require("./lib/Engineer.js");
 const Intern = require("./lib/Intern.js");
-const {generatePage, generateEmployeeCards} = require("./src/page-template.js");
+const {generatePage} = require("./src/page-template.js");
 const fs = require("fs");
 
 
@@ -12,23 +12,23 @@ const fs = require("fs");
 const employeeArray = [];
 const testArray = [
     {
-    name: "Manager1",
+    name: "Michael Scott",
     role: "Manager",
-    id: "manager11223",
+    id: "01",
     email: "manager@thiscompany.net",
     officeNumber: "23451"
     },
     {
-    name: "Engineer1",
+    name: "Paulina Walker",
     role: "Engineer",
-    id: "44372",
+    id: "472",
     email: "engineer@thiscompany.net",
     github: "gitPower"
     },
     {
-    name: "Intern1",
+    name: "Ryan Dontoh",
     role: "Intern",
-    id: "3321587769309",
+    id: "00421",
     email: "intern@thiscompany.net",
     school: "GCU"
     }
