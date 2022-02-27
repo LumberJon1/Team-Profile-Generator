@@ -10,47 +10,7 @@ const fs = require("fs");
 
 //Array that holds employees
 const employeeArray = [];
-const testArray = [
-    {
-    name: "Michael Scott",
-    role: "Manager",
-    id: "01",
-    email: "manager@thiscompany.net",
-    officeNumber: "23451"
-    },
-    {
-    name: "Paulina Walker",
-    role: "Engineer",
-    id: "472",
-    email: "engineer@thiscompany.net",
-    github: "gitPower"
-    },
-    {
-    name: "Ryan Dontoh",
-    role: "Intern",
-    id: "00421",
-    email: "intern@thiscompany.net",
-    school: "GCU"
-    }
-]
 
-const writeFile = fileContent => {
-        return new Promise((resolve, reject) => {
-            fs.writeFile("./dist/index.html", fileContent, err => {
-                if (err) {
-                    reject (err);
-                    return;
-                }
-                resolve({
-                    ok: true,
-                    message: "File created."
-                });
-            });
-        });
-    };
-
-let testData = generatePage(testArray);
-writeFile(testData);
 
 //Prompt user for employees...
 //Section for the manager
@@ -89,7 +49,7 @@ const managerPrompt = () => {
             name: manager.name,
             id: manager.id,
             email: manager.email,
-            school: manager.officeNumber
+            officeNumber: manager.officeNumber
             }
         )}
     )
@@ -98,7 +58,7 @@ const managerPrompt = () => {
 
 //Prompt details of the employee
 const promptDetails = (employee) => {
-    console.log("Prompting for details about "+employee);
+
     if (employee === "Engineer") {
         inquirer.prompt([
             {
@@ -195,8 +155,6 @@ const promptEmployee = () => {
             choices: ["Engineer", "Intern", "Finish"]
         }
     ).then(function(answer) {
-        console.log("Answer: "+answer.employeeType);
-        console.log(answer.employeeType);
 
         if (answer.employeeType === "Engineer") {
             promptDetails(answer.employeeType);
@@ -205,9 +163,7 @@ const promptEmployee = () => {
             promptDetails(answer.employeeType)
         }
         else {
-            console.log(employeeArray);
             const pageData = generatePage(employeeArray)
-            console.log(pageData);
             writeFile(pageData);
         }
     })
@@ -215,23 +171,22 @@ const promptEmployee = () => {
 
 //When finished, generate the HTML
 
-// managerPrompt().then(function(answer) {
-//     //do something with answer
-//     console.log(answer);
-//     promptEmployee()
-// })
+managerPrompt().then(function(answer) {
+    //do something with answer
+    promptEmployee()
+})
 
-// const writeFile = fileContent => {
-//     return new Promise((resolve, reject) => {
-//         fs.writeFile("./dist/index.html", fileContent, err => {
-//             if (err) {
-//                 reject (err);
-//                 return;
-//             }
-//             resolve({
-//                 ok: true,
-//                 message: "File created."
-//             });
-//         });
-//     });
-// };
+const writeFile = fileContent => {
+    return new Promise((resolve, reject) => {
+        fs.writeFile("./dist/index.html", fileContent, err => {
+            if (err) {
+                reject (err);
+                return;
+            }
+            resolve({
+                ok: true,
+                message: "File created."
+            });
+        });
+    });
+};
